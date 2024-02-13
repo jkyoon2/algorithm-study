@@ -11,13 +11,24 @@ def draw_star(n):
     # 첫 번째 행
     pattern.append('*' * (4 * (n-1) + 1))
     
-    # 재귀적으로 형성된 패턴을 중간에 삽입
-    for star in stars:
-        pattern.append('* ' + star + ' *')
+    # 두 번째 행 
+    pattern.append('*' + ' '*(4 * (n-1)))
     
-    # 중앙에 있는 별들
-    for star in stars:
-        pattern.append('* ' + ' '.join(star) + ' *')
+    if n == 2:
+        pattern.append('* ' + stars[0] + '**')
+        pattern.append('* ' + stars[0] + ' *')
+        pattern.append('* ' + stars[0] + ' *')
+    
+    else:
+        # 재귀적으로 형성된 패턴을 중간에 삽입
+        for idx, star in enumerate(stars):
+            if idx == 0:
+                pattern.append('* ' + star + '**')
+            else:
+                pattern.append('* ' + star + ' *')
+    
+    # 마지막에서 두 번째 행 
+    pattern.append('*' + ' '*(4 * (n-1) - 1) + '*')
     
     # 마지막 행
     pattern.append('*' * (4 * (n-1) + 1))
@@ -32,4 +43,4 @@ star_pattern = draw_star(N)
 
 # 출력하기
 for pattern in star_pattern:
-    print(pattern)
+    print(pattern.strip())
